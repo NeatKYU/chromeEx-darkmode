@@ -36,13 +36,10 @@ chrome.storage.onChanged.addListener(function (changes, namespace) {
   }
 });
 
-chrome.storage.sync.get("state", function (data) {
+chrome.storage.sync.get(["state", "color"], function (data) {
   if (data.state) {
-    console.log("이미 스위치가 켜져있음");
-    chrome.storage.sync.get("color", function (data) {
-      const elements = document.getElementsByClassName("c");
-      changeColor(elements, true, data.color);
-    });
+    const elements = document.getElementsByClassName("c");
+    changeColor(elements, true, data.color);
   }
 });
 
@@ -54,3 +51,23 @@ chrome.storage.sync.get("state", function (data) {
 //     changeColor(elements, message.darkMode);
 //   }
 // });
+
+// URL 변화를 감지하는 MutationObserver 설정
+const observer = new MutationObserver(() => {
+  if (window.location.href !== observer.lastUrl) {
+    observer.lastUrl = window.location.href;
+    chrome.storage.sync.get(["state", "color"], function (data) {
+      if (data.state) {
+        const elements = document.getElementsByClassName("c");
+        changeColor(elements, true, data.color);
+      }
+    });
+  }
+});
+
+const config = { subtree: true, childList: true };
+observer.observe(document, config);
+observer.lastUrl = window.location.href;
+
+// 초기 로드 시 URL 변화 처리
+// onUrlChange();
