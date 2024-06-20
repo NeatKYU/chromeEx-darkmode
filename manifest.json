@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "darkmode for blog",
+  "version": "1.1",
+  "description": "A simple Chrome extension.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.velog.io/*",
+        "https://*.fe-developers.kakaoent.com/*",
+        "https://*.yozm.wishket.com/*"
+      ],
+      "js": ["common.js"]
+    },
+    {
+      "matches": ["https://*.medium.com/*"],
+      "js": ["medium.js"]
+    }
+  ]
+}
