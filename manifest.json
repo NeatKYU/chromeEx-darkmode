@@ -26,7 +26,8 @@
       "matches": [
         "https://*.velog.io/*",
         "https://*.fe-developers.kakaoent.com/*",
-        "https://*.yozm.wishket.com/*"
+        "https://*.yozm.wishket.com/*",
+        "https://*.devocean.sk.com/blog/*"
       ],
       "js": ["common.js"]
     },
