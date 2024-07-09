@@ -27,7 +27,8 @@
         "https://*.velog.io/*",
         "https://*.fe-developers.kakaoent.com/*",
         "https://*.yozm.wishket.com/*",
-        "https://*.devocean.sk.com/blog/*"
+        "https://*.devocean.sk.com/blog/*",
+        "https://*.tech.kakao.com/*"
       ],
       "js": ["common.js"]
     },
